@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python聊天室</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="txt"/>
+        <input type="button" id="btn" value="提交" onclick="sendMsg();"/>
+        <input type="button" id="close" value="关闭连接" onclick="closeConn();"/>
+    </div>
+    <div id="container" style="border: 1px solid #dddddd;margin: 20px;min-height: 500px;">
+
+    </div>
+
+    <script src="/static/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            wsUpdater.start();
+        });
+
+        var wsUpdater = {
+            socket: null,
+            uid: null,
+            start: function() {
+                var url = "ws://127.0.0.1:8080/chat";
+                wsUpdater.socket = new WebSocket(url);
+                wsUpdater.socket.onmessage = function(event) {
+                    // console.log(event.data);
+                    $("#container").append(event.data)
+                    // if(wsUpdater.uid){
+                    //     wsUpdater.showMessage(event.data);
+                    // }else{
+                    //     wsUpdater.uid = event.data;
+                    // }
+                }
+            },
+            showMessage: function(content) {
+                $('#container').append(content);
+            }
+        };
+
+        function sendMsg() {
+            wsUpdater.socket.send($("#txt").val());
+        }
+
+</script>
+
+</body>
+</html>

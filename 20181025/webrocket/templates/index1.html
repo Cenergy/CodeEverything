@@ -1,0 +1,85 @@
+<html><head><title>Web Socket Client</title></head>
+
+<body>
+
+<script type="text/javascript">
+
+var socket;
+
+if (!window.WebSocket) {
+
+    window.WebSocket = window.MozWebSocket;
+
+}
+
+// Javascript Websocket Client
+
+if (window.WebSocket) {
+    var url = "ws://"+location.host+"/websocket";
+    socket = new WebSocket(url);
+
+    socket.onmessage = function(event) {
+
+        var ta = document.getElementById('responseText');
+
+        ta.innerHTML = ta.innerHTML + '<br/>' + event.data
+
+    };
+
+    socket.onopen = function(event) {
+
+        var ta = document.getElementById('responseText');
+
+        ta.value = "Web Socket opened!";
+
+    };
+
+    socket.onclose = function(event) {
+
+        var ta = document.getElementById('responseText');
+
+        ta.value = ta.value + "Web Socket closed";
+
+    };
+
+} else {
+
+    alert("Your browser does not support Web Socket.");
+
+}
+
+// Send Websocket data
+
+function send(message) {
+
+    if (!window.WebSocket) { return; }
+
+    if (socket.readyState == WebSocket.OPEN) {
+
+        socket.send(message);
+
+    } else {
+
+        alert("The socket is not open.");
+
+    }
+
+}
+
+</script>
+
+<h3>Send :</h3>
+
+<form onsubmit="return false;">
+
+<input type="text" name="message" value="Hello World!"/><input type="button" value="Send" onclick="send(this.form.message.value)" />
+
+<h3>Receive :</h3>
+
+<div id="responseText" style="width:500px;height:300px;"></div>
+
+</form>
+
+</body>
+
+</html>
