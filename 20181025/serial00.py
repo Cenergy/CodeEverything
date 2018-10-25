@@ -93,7 +93,7 @@ class ComThread:
                         print(str_data[-1])
                         print('str_data[-1]!=*')
                 except:
-                    print("读卡错误，请重试！\n")
+                    print("读卡错误，请重试!！\n")
 
         self.ID = str_ID
         self.data = str_data[0:-1]
