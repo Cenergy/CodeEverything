@@ -17,4 +17,4 @@ with open(r'C:\ssq.csv', 'w', encoding='utf-8-sig', newline='') as f:
 
 for i in range(1,117):  # 目前116页数据
     get_one_page(i).to_csv(r'ssq.csv', mode='a', encoding='utf_8_sig', header=0, index=0)
-    print('第'+str(i)+'页抓取完成')
+    print('第'+str(i)+'页抓取完成!')
