@@ -143,8 +143,8 @@ public class BST<E extends Comparable<E>> {
     private void postOrder(Node node) {
         if (node == null)
             return;
-        inOrder(node.left);
-        inOrder(node.right);
+        postOrder(node.left);
+        postOrder(node.right);
         System.out.println(node.e);
     }
 
@@ -184,35 +184,39 @@ public class BST<E extends Comparable<E>> {
         return (maximum(root).e);
 
     }
-    public E removeMin(){
-        E ret=minimum();
-        root=removeMin(root);
+
+    public E removeMin() {
+        E ret = minimum();
+        root = removeMin(root);
         return ret;
 
     }
-    private Node removeMin(Node node){
-        if(node.left==null){
-            Node rightNode=node.right;
-            node.right=null;
+
+    private Node removeMin(Node node) {
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
             size--;
             return rightNode;
         }
-        node.left=removeMin(node.left);
+        node.left = removeMin(node.left);
         return node;
     }
-    public E removeMax(){
-        E ret=maximum();
+
+    public E removeMax() {
+        E ret = maximum();
 
         return ret;
     }
-    private Node removeMax(Node node){
-        if(node.right==null){
-            Node leftNode=node.left;
-            node.left=null;
+
+    private Node removeMax(Node node) {
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
             size--;
             return leftNode;
         }
-        node.right=removeMax(node.right);
+        node.right = removeMax(node.right);
         return node;
     }
 
@@ -223,6 +227,48 @@ public class BST<E extends Comparable<E>> {
             return maximum(node.right);
         }
 
+    }
+
+    //删除以node为根节点中的元素e
+    public void remove(E e) {
+        root = remove(root, e);
+    }
+
+    private Node remove(Node node, E e) {
+        if (node == null) {
+            return null;
+        }
+        if (e.compareTo(node.e) < 0) {
+            node.left = remove(node.left, e);
+            return node;
+        } else if (e.compareTo(node.e) > 0) {
+            node.right = remove(node.right, e);
+            return node;
+        } else {
+            //e==node.e
+
+            if (node.left == null) {
+                Node nodeRight = node.right;
+                node.right = null;
+                size--;
+                return nodeRight;
+            }else if(node.right==null){
+                Node nodeLeft=node.left;
+                node.left=null;
+                size--;
+                return nodeLeft;
+            }else{
+                Node successor=minimum(node.right);
+
+                successor.right=removeMin(node.right);
+                successor.left=node.left;
+
+                node.right=node.right=null;
+
+                return successor;
+            }
+
+        }
     }
 
     @Override
@@ -258,18 +304,15 @@ public class BST<E extends Comparable<E>> {
         for (int num : nums)
             bst.add(num);
 
-        bst.prevOrder();
-        System.out.println();
-        bst.prevOrderNR();
-        System.out.println();
-        bst.levelOrder();
-        System.out.println(bst.minimum());
+//        bst.prevOrder();
+//        System.out.println();
+//        bst.prevOrderNR();
+//        System.out.println();
+//        bst.levelOrder();
+//        System.out.println(bst.minimum());
 
 
-
-        bst.inOrder();
-        System.out.println();
-        bst.removeMin();
+        bst.remove(5);
         bst.inOrder();
         System.out.println();
 //        bst.inOrder();
