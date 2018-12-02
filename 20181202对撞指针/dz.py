@@ -28,5 +28,6 @@ if __name__ == '__main__':
     # Explanation: The
     # answer is "abc",
     # with the length of 3.
+    # 使用对撞指针。
     s = "abcdedhsjavdhsvdedadbjxzxnabcba"
     print(lengthOfLongestSubstring(s))
