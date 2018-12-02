@@ -30,4 +30,3 @@ if __name__ == '__main__':
     # with the length of 3.
     s = "abcdedhsjavdhsvdedadbjxzxnabcba"
     print(lengthOfLongestSubstring(s))
-    a={}
