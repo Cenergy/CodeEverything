@@ -12,3 +12,4 @@
 # redis 跳表
 MCTS(蒙特卡罗树)：AlphaGo用的是蒙特卡罗树搜索算法的一种，在计算树节点Q值时使用了ResNet等神经网络模型，只是在论文中也归类为增强学习而已。
 
+# nothing ,today
