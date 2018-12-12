@@ -60,6 +60,7 @@ public class MaxHeap<E extends Comparable<E>> {
         return ret;
     }
     private void siftDown(int k){
+    //当不存在子节点时停止：
         while (leftChild(k)<data.getSize()){
             int j=leftChild(k);
             if(j+1<data.getSize()&&data.get(j+1).compareTo(data.get(i))>0){
