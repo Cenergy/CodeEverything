@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class MaxHeap<E extends Comparable<E>> {
     private Array<E> data;
 
@@ -48,7 +50,7 @@ public class MaxHeap<E extends Comparable<E>> {
     }
     public E findMax(){
         if(data.getSize()==0){
-            throw new IllegalArgumentException("can not findMax when heap is empty")
+            throw new IllegalArgumentException("can not findMax when heap is empty");
         }
         return data.get(0);
     }
@@ -60,19 +62,40 @@ public class MaxHeap<E extends Comparable<E>> {
         return ret;
     }
     private void siftDown(int k){
-    //当不存在子节点时停止：
         while (leftChild(k)<data.getSize()){
             int j=leftChild(k);
-            if(j+1<data.getSize()&&data.get(j+1).compareTo(data.get(i))>0){
+            if(j+1<data.getSize()&&data.get(j+1).compareTo(data.get(j))>0){
                 j=rightChild(k);
             }
-            if(data.get(k).compareTo(data.get(j))>=){
+            //data[j]是leftChild和rightChild中的较大值
+            if(data.get(k).compareTo(data.get(j))>=0){
                 break;
             }else{
                 data.swap(k,j);
                 k=j;
             }
         }
+    }
+
+
+    public static void main(String[] args) {
+        int n=10000;
+        MaxHeap<Integer> maxheap=new MaxHeap<>();
+        Random random=new Random();
+        for(int i=0;i<n;i++){
+            maxheap.add(random.nextInt(Integer.MAX_VALUE));
+        }
+        int[] arr=new int[n+10];
+        for(int i=0;i<n;i++){
+            arr[i]=maxheap.extractMax();
+        }
+        for (int i=1;i<n;i++){
+            if(arr[i-1]<arr[i]){
+                throw new IllegalArgumentException("error");
+            }
+        }
+        System.out.println("MaxHeap is complete");
+
     }
 
 }
