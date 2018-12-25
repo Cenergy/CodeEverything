@@ -21,7 +21,7 @@ public class RBTree<K extends Comparable<K>, V>{
     private Node root;
     private int size;
 
-    public BST() {
+    public RBTree() {
         root = null;
         size = 0;
     }
@@ -34,14 +34,51 @@ public class RBTree<K extends Comparable<K>, V>{
         return size;
     }
 
-    public void add(K key, V value) {
-        add(root, key, value);
+    public boolean isRed(Node node){
+        if(node==null){
+            return BLACK;
+        }
+        return node.color;
+    }
+    //     node                          x
+    //      /\           左旋转           /\
+    //     T1 x       ------------->  node T3
+    //        /\                        /\
+    //       T2 T3                     T1 T2
+
+    private Node leftRotate(Node node){
+        Node x=node.right;
+        x.left=node;
+        x.color=node.color;
+        node.color=RED;
+        return x;
+
+    }
+    private Node rightRotate(Node node){
+        Node x=node.left;
+        x.right=node;
+        x.color=node.color;
+        node.color=RED;
+        return x;
     }
 
+    private void filpColors(Node node){
+        node.color=RED;
+        node.left.color=BLACK;
+        node.right.color=BLACK;
+    }
+
+    //向红黑树中添加元素
+    public void add(K key, V value) {
+        root=add(root, key, value);
+        root.color=BLACK;
+    }
+    //向以node为根的红黑树中添加元素（key，value），递归算法。
+    // 返回插入新节点后红黑树的根
     private Node add(Node node, K key, V value) {
         if (node == null) {
             size++;
-            return new Node(key, value);
+            return new Node(key, value);   //默认插入红色的节点
         }
         if (key.compareTo(node.key) < 0) {
             node.left = add(node.left, key, value);
@@ -49,6 +86,15 @@ public class RBTree<K extends Comparable<K>, V>{
             node.right = add(node.right, key, value);
         } else {
             node.value = value;
+        }
+        if(isRed(node.right)&&!isRed(node.left)){
+            node=leftRotate(node);
+        }
+        if(isRed(node.left)&&isRed(node.left.left)){
+            node=rightRotate(node);
+        }
+        if(isRed(node.right)&&isRed(node.left)){
+            filpColors(node);
         }
         return node;
     }
@@ -148,5 +194,9 @@ public class RBTree<K extends Comparable<K>, V>{
 
         }
 
+    }
+
+    public static void main(String[] args) {
+        System.out.println("123");
     }
 }
