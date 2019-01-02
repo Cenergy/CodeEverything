@@ -25,4 +25,9 @@ class Solution(object):
                     pass
                 else:
                     nums[i], nums[j] = nums[j], nums[i]
-                i+=1
+                i=i+1
+        return nums
+
+if __name__ == '__main__':
+    a=Solution()
+    print(a.moveZeroes(list([0,1,0,3,12])))
