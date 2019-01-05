@@ -24,10 +24,14 @@ def merge_sort(L):
         return L
     mid = len(L) // 2
     left = L[:mid]
+    print("left:",left)
     right = L[mid:]
+    print("right:",right)
 
     left = merge_sort(left)
+    print("bleft:", left)
     right = merge_sort(right)
+    print("bright:", right)
     # conquer sub-problem recursively
     return merge(left, right)
     # return the answer of sub-problem
