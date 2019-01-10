@@ -9,9 +9,9 @@ def bubble_sorted(new_list):
         for j in range(list_len - 1, i, -1):
             if new_list[j] < new_list[j - 1]:
                 new_list[j], new_list[j - 1] = new_list[j - 1], new_list[j]
-            print(new_list)
+            # print(new_list)
     return new_list
 
 if __name__ == '__main__':
-    abc = [11, 2, 34, 23, 5]
+    abc = [17, 23, 20, 14, 12, 25, 1, 20, 81, 14, 11, 12]
     print(bubble_sorted(abc))
