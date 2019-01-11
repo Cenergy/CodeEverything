@@ -49,8 +49,6 @@ def insert_sort3(lst,l,r):
         for j in range(i,l,-1):
             if lst[j-1]>item_arr:
                 lst[j] = lst[j-1]
-            else:
-                break
             lst[j-1]=item_arr
     return lst
 
