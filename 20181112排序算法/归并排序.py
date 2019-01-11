@@ -5,6 +5,7 @@ __date__ = '13/11/2018 10:43 PM'
 
 # Recursively implementation of Merge Sort
 def merge(left, right):
+    print("left:",left,"right:",right)
     result = []
     while left and right:
         if left[0] <= right[0]:
@@ -15,6 +16,7 @@ def merge(left, right):
         result += left
     if right:
         result += right
+    print("merge:",result)
     return result
 
 
@@ -26,7 +28,7 @@ def merge_sort(L):
     left = L[:mid]
     print("left:",left)
     right = L[mid:]
-    print("right:",right)
+    # print("right:",right)
 
     left = merge_sort(left)
     print("bleft:", left)
@@ -38,6 +40,6 @@ def merge_sort(L):
 
 
 if __name__ == "__main__":
-    test = [1, 4, 2, 3.6, -1, 0, 25, -34, 8, 9, 1, 0]
+    test = [ 4,2, 1, 5,3]
     print("original:", test)
     print("Sorted:", merge_sort(test))
