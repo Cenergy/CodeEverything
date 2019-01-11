@@ -31,7 +31,7 @@ def mergeSortHelper(v, head1, head2, tail2):
 def mergeSort(v):
     length = len(v)
     step = 1
-    # 步长为1,2,4,8，...，一直合并下去
+    # 步长为1,2,4,8，...，一直合并下去!
     while step <= length:
         offset = step << 1
         for index in range(0, length, offset):
