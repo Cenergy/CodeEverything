@@ -1,5 +1,3 @@
-
-
 // 边
 public class Edge<Weight extends Number & Comparable> implements Comparable<Edge<Weight>>{
 

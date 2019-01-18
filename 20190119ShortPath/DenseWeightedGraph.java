@@ -1,4 +1,3 @@
-
 import java.util.Vector;
 
 // 稠密图 - 邻接矩阵

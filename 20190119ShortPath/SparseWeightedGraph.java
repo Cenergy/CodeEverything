@@ -1,5 +1,3 @@
-
-
 import java.util.Vector;
 
 // 稀疏图 - 邻接表

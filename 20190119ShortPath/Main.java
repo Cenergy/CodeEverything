@@ -1,5 +1,3 @@
-
-
 public class Main {
 
     // 测试我们的Dijkstra最短路径算法
