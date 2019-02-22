@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div @click="hello123" v-color="'blue'" v-fontsize="100">
+            {{hello}}
+        </div>
+    </div>
+    <script>
+        Vue.directive('color',{
+            bind:function(el,binding){
+                el.style.color=binding.value;
+            }
+        })
+        let vue = new Vue({
+            el: "#app",
+            data: {
+                hello: "helloworld"
+            },
+            methods: {
+                hello123() {
+                    console.log("hello123")
+                }
+            },
+            directives:{
+                'fontsize':function(el,binding){
+                    el.style.fontSize=parseInt(binding.value)+'px'
+                }
+            }
+        })
+        
+    </script>
+</body>
+
+</html>
