@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+    <script src="lib/axios.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap.css">
+</head>
+
+<body>
+    <!-- 模块化与组件化的区别：
+    模块化是从逻辑划分，方便代码分层开发
+    组件化是从UI划分的，方便UI重用。
+    -->
+    <div id="app">
+        <mycom1></mycom1>
+        <mycom4></mycom4>
+    </div>
+
+    <!-- out of app -->
+    <template id="tmp1">
+        <div>
+            <span>hello</span>
+            <h3>xxxxx</h3>
+        </div>
+    </template>    
+    <script>
+        var com1 = Vue.extend({
+            template: "<h3>This is H3 for vue.extend</h3>"
+        })
+        // Vue.component("组建名称","创建出来的模板对象")
+        Vue.component('mycom1', com1);
+        Vue.component('mycom2',Vue.extend({
+            template: "<h3>This is mycom2 for vue.extend</h3>"
+        }))
+        Vue.component('mycom3',{
+            template: "<h3>This is mycom3 for vue.extend</h3>"
+        })
+        Vue.component('mycom4',{
+            template:"#tmp1"
+        })
+        var vm = new Vue({
+            el: "#app",
+            data: {},
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>
