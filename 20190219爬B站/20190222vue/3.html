@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="lib/vue.js"></script>
+        <script src="lib/axios.js"></script>
+        <link rel="stylesheet" href="lib/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.0/animate.css">
+    </head>
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click="flag=!flag">
+        
+        <transition enter-active-class="bounceIn" leave-active-class="bounceOut">
+            <h3 v-if="flag">This is H3</h3>
+        </transition>
+    </div>
+    <script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            flag:true,
+        },
+        methods: {
+            
+        },
+    })
+    </script>
+</body>
+</html>
