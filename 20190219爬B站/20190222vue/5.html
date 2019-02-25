@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="lib/vue.js"></script>
+        <script src="lib/axios.js"></script>
+        <link rel="stylesheet" href="lib/bootstrap.css">
+    </head>
+<body>
+    <div id="app">
+        <mycom1></mycom1>
+        <hr>
+        <mycom1></mycom1>
+    </div>
+    <template id="tmp1">
+        <div @click="add">
+           {{count}}
+        </div>
+    </template>
+    <script>
+        Vue.component('mycom1',{
+            template:"#tmp1",
+            data:function(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                add(){
+                    this.count++;
+                }
+            }
+        })
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            
+        },
+        methods: {
+            
+        },
+    })
+    </script>
+</body>
+</html>
