@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="lib/vue.js"></script>
+        <script src="lib/axios.js"></script>
+        <link rel="stylesheet" href="lib/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.0/animate.css">
+    </head>
+<body>
+    <div id="app">
+       <login></login>
+       <com1 v-bind:parentmsg="msg"></com1>
+    </div>
+    <script>
+        var login={
+            template:"<h3>This is H3</h3>"
+        }
+    var vm=new Vue({
+        el:"#app",
+        data:{
+          msg:"father data"
+        },
+        methods: {
+            
+        },
+        components:{
+            login,
+            com1:{
+                data(){
+                    return {
+                        title:'123'
+                    }
+                },
+                template:"<h1>This is H1 ------>>>>>{{parentmsg}}</h1>",
+                // props的数据是父组件传递给子组件的
+                props:['parentmsg'],
+                directives:{},
+                filters:{},
+                components:{}
+
+            }
+        }
+    })
+    </script>
+</body>
+</html>

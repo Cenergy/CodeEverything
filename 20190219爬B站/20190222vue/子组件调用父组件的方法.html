@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="lib/vue.js"></script>
+        <script src="lib/axios.js"></script>
+        <link rel="stylesheet" href="lib/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.0/animate.css">
+    </head>
+<body>
+    <div id="app">
+      <login v-on:func="show"></login>
+    </div>
+    <template id="tmp1">
+        <div>
+            <h1 @click="myclick">这是子组件</h1>
+        </div>
+    </template>
+    <script>
+        var login={
+            template:"#tmp1",
+            data(){
+                return{
+                sonmsg:"son msg",
+                age:666,}
+            },
+            methods:{
+                myclick(){
+                    this.$emit('func',this.sonmsg)
+                }
+            }
+        }
+    var vm=new Vue({
+        el:"#app",
+        data:{
+          msg:"father data",
+          msgfromson:null,
+        },
+        methods: {
+            show(data){
+                console.log("use father's function------->"+data);
+                this.msgfromson=data
+            }
+        },
+        components:{
+            login
+        }
+    })
+    </script>
+</body>
+</html>
