@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+    <script src="lib/axios.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap.css">
+</head>
+<body>
+    <div id="app">
+        <a href="" @click.prevent="compName='login'">login</a>
+        <a href="" @click.prevent="compName='register'">register</a>
+        <!-- component 是占位符，可以用来指定展示组建的名称 -->
+        <!-- component template transition transitionGroup -->
+        <component :is="compName"></component>
+    </div>
+    <script>
+        Vue.component('login',{
+            template:"<h3>This is Login</h3>"
+        })
+        Vue.component('register',{
+            template:"<h3>This is Register</h3>"
+        })
+     var vm=new Vue({
+         el:"#app",
+         data:{
+             compName:'login',
+         },
+         methods: {
+             
+         },
+     })
+
+    </script>
+</body>
+</html>
