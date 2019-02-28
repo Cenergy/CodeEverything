@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="lib/vue.js"></script>
+        <script src="lib/axios.js"></script>
+        <link rel="stylesheet" href="lib/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.0/animate.css">
+    </head>
+<body>
+    <div id="app">
+        <cmtbox @func="loadComments"></cmtbox>
+      <ul class="list-group">
+          <li class="list-group-item" v-for="item in list" :key="item.id">
+              <span class="badge">user:{{item.user}}</span>
+              {{item.content}}
+          </li>
+      </ul>
+    </div>
+    <template id="tmp1">
+        <div>
+            <div class="form-group">
+                <label for="">user</label>
+                <input type="text" class="form-control" v-model="user">
+            </div>
+            <div class="form-group">
+                    <label for="">content</label>
+                    <textarea class="form-control" v-model="content"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="button" value="fire" class="btn btn-primary" @click="postComment">
+            </div>
+        </div>
+    </template>
+    <script>
+        var componentBox={
+            template:"#tmp1",
+            data(){
+                return {
+                    user:'',
+                    content:''
+                }
+            },
+            methods:{
+                postComment(){
+                    var comment={id:Date.now(),user:this.user,content:this.content}
+                    var list=JSON.parse(localStorage.getItem('cmts')||'[]');
+                    list.push(comment);
+                    localStorage.setItem('cmts',JSON.stringify(list))
+                    this.user=this.content='';
+                    this.$emit('func')
+                }
+            }
+        }
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            list:[
+            {id:Date.now(),user:'提莫',content:"don't underlook me"},
+            { id:Date.now(),user:'aike',content:"i have lots of time"},
+            { id:Date.now(),user:'yasuo',content:"pass as wind as fllow"}
+            ]
+        },
+        created() {
+            this.loadComments();
+        },
+        methods: {
+            loadComments(){
+                var list=JSON.parse(localStorage.getItem('cmts')||'[]');
+                this.list=list;
+            }
+        },
+        components:{
+            'cmtbox':componentBox
+        }
+    })
+    </script>
+</body>
+</html>
