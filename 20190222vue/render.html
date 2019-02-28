@@ -9,26 +9,22 @@
     </head>
 <body>
     <div id="app">
-       <input type="text" v-model='firstname'>
-       <input type="text" v-model='lastname'>
-       <input type="text" v-model='fullname'>
+       
     </div>
     <script>
+        var login={
+            template:"<h1>This is Login</h1>"
+        }
     var vm=new Vue({
         el:"#app",
         data:{
-           firstname:'',
-           lastname:'',
+           
         },
         methods: {
-            // getfullname(){
-            //     this.fullname=this.firstname+'---'+this.lastname
-            // }
+            
         },
-        computed: {
-            fullname(){
-                return this.firstname+'---'+this.lastname
-            }
+        render:function(createElements) {
+            return createElements(login)
         },
     })
     </script>
