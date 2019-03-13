@@ -7,3 +7,5 @@
 # Boosting
 # Stacking 
 # next station is cv or tensorflow?
+# cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+# cv2.warpAffine(img,opMat,(height,width))
