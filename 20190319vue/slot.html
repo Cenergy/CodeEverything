@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="lib/vue.js"></script>
+    </head>
+<body>
+    <div id="app">
+        <ul slot="s1">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+       <aaa>123123</aaa>
+       <ol slot="s2">
+           <li>4</li>
+       </ol>
+    </div>
+    <template id="aaa">
+        <div>
+            <slot name="s2"></slot>
+            hello
+            <slot name="s1"></slot>
+        </div>
+    </template>
+    <script>
+        var aaa={
+            template:"#aaa",
+            data:function(){
+                return {
+
+                }
+            }
+        }
+    var vm=new Vue({
+        el:"#app",
+        data:{
+           
+        },
+        methods: {
+            
+        },
+        components:{
+            aaa
+        }
+    })
+    </script>
+</body>
+</html>
