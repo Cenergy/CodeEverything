@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="lib/vue.js"></script>
+        <script src="lib/vue-router.js"></script>
+    </head>
+<body>
+    <div id="app">
+       <router-link to="/home">主页</router-link>
+       <router-link to="/news">新闻</router-link>
+       <router-view></router-view>
+    </div>
+    <script>
+    
+    // 定义组件
+    var aaa={
+        template:"<h1>AAAAAAAAAAAAA</h1>"
+    }
+    var bbb={
+        template:"<h1>BBBBBBBBBBBBBBBBBBBBBBBBB</h1>"
+    }
+    // 配置路由
+    const routes=[
+        {
+            path:"/home",component:aaa
+        },{
+            path:"/news",component:bbb
+        }
+    ]
+    //创建路由实例
+    const router = new VueRouter({
+        routes:routes,
+        // mode:"history"
+    })
+    var vm=new Vue({
+        el:"#app",
+        data:{
+           
+        },
+        methods: {
+            
+        },
+        router
+    })
+    </script>
+</body>
+</html>
