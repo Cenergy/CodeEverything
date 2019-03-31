@@ -8,7 +8,7 @@
 # for i in company:
 #     print(i)
 from geopy.geocoders import Nominatim
-
+# thermometr
 geolocator = Nominatim()
 location = geolocator.geocode("天安门")
 print(location.address)
