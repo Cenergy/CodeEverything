@@ -10,5 +10,5 @@
 from geopy.geocoders import Nominatim
 # thermometr
 geolocator = Nominatim()
-location = geolocator.geocode("天安门")
+location = geolocator.geocode("天安门0")
 print(location.address)
