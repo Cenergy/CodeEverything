@@ -24,3 +24,4 @@ select sort
 # 最小生成树
 
 prim Kruskal   2.14 ----++++
+123456
